@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import android.view.Gravity;
 import android.view.View;
 
 import android.widget.Button;
@@ -66,6 +67,34 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
+        userLogin.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view){
+                progressBar.setVisibility(View.VISIBLE);
+                 mAuth.signInWithEmailAndPassword(userEmail.getText().toString(),
+                         userPass.getText().toString())
+                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                             @Override
+                             public void onComplete(@NonNull Task<AuthResult> task) {
+                                 progressBar.setVisibility(View.GONE);
+                                 if(task.isSuccessful()){
+                                     startActivity(new Intent (LoginActivity.this, ProfileMain.class));
+
+
+                                 }
+                                 else{
+                                     Toast toast = Toast.makeText(LoginActivity.this, task.getException().getMessage(), Toast.LENGTH_LONG);
+                                     toast.setGravity(Gravity.CENTER, 0, 0);
+                                     toast.show();
+                                 }
+                             }
+                         });
+
+
+            }
+
+        });
 
     }
 

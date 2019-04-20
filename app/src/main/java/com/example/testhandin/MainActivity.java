@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        User user = new User(name, email);
+        User user = new User(email);
         mDatabase.child("users").child(userId).setValue(user);
 
 
