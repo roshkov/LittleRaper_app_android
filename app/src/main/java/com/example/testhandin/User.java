@@ -1,6 +1,10 @@
 package com.example.testhandin;
 
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.IgnoreExtraProperties;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @IgnoreExtraProperties
 
@@ -27,3 +31,5 @@ public class User {
     }
 
 }
+
+
