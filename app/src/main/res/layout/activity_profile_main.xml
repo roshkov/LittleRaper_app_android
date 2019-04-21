@@ -33,7 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="108dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="nickname"
@@ -45,8 +45,8 @@
 
     <EditText
         android:id="@+id/aboutText"
-        android:layout_width="226dp"
-        android:layout_height="214dp"
+        android:layout_width="225dp"
+        android:layout_height="46dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
@@ -56,21 +56,68 @@
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/btnSignOut"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.591"
+        app:layout_constraintHorizontal_bias="0.588"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nicknameText"
-        app:layout_constraintVertical_bias="0.103" />
+        app:layout_constraintVertical_bias="0.016" />
 
     <Button
         android:id="@+id/btnUpdateInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="76dp"
         android:text="Update"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.995"
+        app:layout_constraintHorizontal_bias="0.991"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/aboutText" />
+
+    <Button
+        android:id="@+id/btnGoToSongList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="184dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Goto Songs"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnSignOut"
+        app:layout_constraintTop_toBottomOf="@+id/btnUpdateInfo"
+        app:layout_constraintVertical_bias="0.944" />
+
+    <EditText
+        android:id="@+id/newSongName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="108dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Song Name"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnUpdateInfo" />
+
+    <EditText
+        android:id="@+id/newSongLyrics"
+        android:layout_width="wrap_content"
+        android:layout_height="126dp"
+        android:layout_marginStart="108dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:hint="type lyrics here"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newSongName" />
+
+    <Button
+        android:id="@+id/btnCreateSong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="88dp"
+        android:text="Create Song"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/newSongLyrics" />
 </android.support.constraint.ConstraintLayout>

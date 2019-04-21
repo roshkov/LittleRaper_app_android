@@ -26,6 +26,11 @@ public class ProfileMain extends AppCompatActivity {
     Button userUpdate;
     TextView userNickname;
     TextView userAbout;
+    Button userGotoSongs;
+    Button userCreateSong;
+    TextView songName;
+    TextView songLyrics;
+
 
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
@@ -44,6 +49,11 @@ public class ProfileMain extends AppCompatActivity {
         userUpdate = findViewById(R.id.btnUpdateInfo);
         userNickname = findViewById(R.id.nicknameText);
         userAbout = findViewById(R.id.aboutText);
+        userGotoSongs = findViewById(R.id.btnGoToSongList);
+        userCreateSong = findViewById(R.id.btnCreateSong);
+        songName = findViewById(R.id.newSongName);
+        songLyrics = findViewById(R.id.newSongLyrics);
+
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -53,6 +63,7 @@ public class ProfileMain extends AppCompatActivity {
         userEmail.setText(firebaseUser.getEmail());
 //        userEmail.setText(userEmail.getText().toString()+"\n"+ firebaseUser.get)
 
+        //HAD TO SETTEXT TO NICKNAME & ABOUT FIELDS TOO!!
 
         userSignOut.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -102,7 +113,42 @@ public class ProfileMain extends AppCompatActivity {
         });
 
 
+        userCreateSong.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                DatabaseReference userRef = mDatabase.child("users");
+               // Map<String, Object> userUpdates = new HashMap<>();
 
+                String songNameS = songName.getText().toString();           ///
+                String songLyricsS = songLyrics.getText().toString();       //create song obj
+                Song song = new Song(songNameS,songLyricsS);                ///
+
+
+                String userPath = "users/" + firebaseUser.getUid().toString()+"/songs";  //path to particular user's song directory
+                String key = mDatabase.child(userPath).push().getKey();                  //create key
+
+
+                Map<String, Object> postValues = song.toMap();
+
+                Map<String, Object> childUpdates = new HashMap<>();
+                childUpdates.put(userPath +"/song" + key, postValues);
+
+                mDatabase.updateChildren(childUpdates);
+
+            }
+        });
+
+
+        userGotoSongs.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(ProfileMain.this, SongListActivity.class);
+                startActivity(intent);
+
+            }
+        });
 
 
     }

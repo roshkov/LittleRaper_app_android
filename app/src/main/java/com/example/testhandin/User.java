@@ -3,6 +3,7 @@ package com.example.testhandin;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,20 +15,26 @@ public class User {
     public String email;
     public String nickname;
     public String about;
+    public ArrayList<Song> songList;
 
 
     public User() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public User(String email) {
+    public User(String email)
+    {
         this.email = email;
+        songList = new ArrayList<Song>();
     }
 
-    public User(String email,String nickname, String about) {
+
+    public User(String email,String nickname, String about)
+    {
         this.nickname = nickname;
         this.email = email;
         this.about = about;
+        songList = new ArrayList<Song>();
     }
 
 }
