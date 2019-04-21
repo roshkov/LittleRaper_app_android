@@ -32,7 +32,7 @@ public class RegisterActivity extends AppCompatActivity {
 
 
 
-    private DatabaseReference mDatabase;
+    DatabaseReference mDatabase;
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
 

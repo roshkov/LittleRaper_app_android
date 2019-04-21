@@ -12,9 +12,11 @@ import android.widget.Toast;
 import com.google.android.gms.common.internal.Constants;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,6 +37,7 @@ public class ProfileMain extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     private DatabaseReference mDatabase;
+    private DatabaseReference userRef;
 
 
     @Override
@@ -58,12 +61,28 @@ public class ProfileMain extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference();
-
+        userRef = FirebaseDatabase.getInstance().getReference("users/"+firebaseUser.getUid().toString());
 
         userEmail.setText(firebaseUser.getEmail());
-//        userEmail.setText(userEmail.getText().toString()+"\n"+ firebaseUser.get)
 
-        //HAD TO SETTEXT TO NICKNAME & ABOUT FIELDS TOO!!
+
+
+        userRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User user = dataSnapshot.getValue(User.class);
+                userNickname.setText(user.nickname);
+                userAbout.setText(user.about);
+
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getCode());
+            }
+        });
+
+
 
         userSignOut.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -86,14 +105,6 @@ public class ProfileMain extends AppCompatActivity {
             public void onClick(View view)
             {
                DatabaseReference userRef = mDatabase.child("users");
-//                DatabaseReference particularUserRef = userRef.child(firebaseUser.getUid());
-
-//                Map<String, User> users = new HashMap<>();
-//                users.put(firebaseUser.getUid(), new User(userEmail.getText().toString(), userNickname.getText().toString(),userAbout.getText().toString()));
-//                usersRef.setValue(users);
-
-//                Map<String, Object> particularUserUpdates = new HashMap<>();
-//                particularUserUpdates.put("")
 
                 Map<String, Object> userUpdates = new HashMap<>();
                 String nickname = firebaseUser.getUid().toString()+"/nickname";
@@ -104,8 +115,8 @@ public class ProfileMain extends AppCompatActivity {
 
                 userRef.updateChildren(userUpdates);
                 Toast.makeText(ProfileMain.this, "Data changed", Toast.LENGTH_LONG).show();
-                userNickname.setText("");
-                userAbout.setText("");
+               // userNickname.setText("");
+               // userAbout.setText("");
 
             }
 

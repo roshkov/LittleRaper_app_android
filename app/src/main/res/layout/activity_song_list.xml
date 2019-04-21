@@ -6,16 +6,35 @@
     android:layout_height="match_parent"
     tools:context=".SongListActivity">
 
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        app:navigationIcon="?attr/homeAsUpIndicator"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark" >
+        <!-- Login progress -->
+        <ProgressBar
+            android:id="@+id/login_progress2"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginBottom="8dp"
+            android:visibility="gone" />
+
+    </android.support.v7.widget.Toolbar>
+
+
     <TextView
         android:id="@+id/userEmailSL"
-        android:layout_width="238dp"
-        android:layout_height="34dp"
+        android:layout_width="130dp"
+        android:layout_height="35dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="72dp"
         android:text="=email="
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -23,24 +42,17 @@
         android:id="@+id/userNicknameSL"
         android:layout_width="254dp"
         android:layout_height="29dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="72dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginTop="20dp"
         android:text="=nickname="
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.553"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userEmailSL" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
 
-    <TextView
-        android:id="@+id/userSongsSL"
-        android:layout_width="263dp"
-        android:layout_height="341dp"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycleViewSongs"
+        android:layout_width="395dp"
+        android:layout_height="115dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="180dp"
-        android:layout_marginEnd="8dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="16dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userNicknameSL" />
 </android.support.constraint.ConstraintLayout>

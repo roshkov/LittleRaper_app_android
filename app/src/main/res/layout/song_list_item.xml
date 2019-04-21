@@ -1,0 +1,18 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:orientation="vertical"
+    android:background="#ee4" >
+
+    <TextView
+        android:id="@+id/myItemName"
+        android:layout_width="408dp"
+        android:layout_height="50dp"
+        android:text="MyItem"
+        android:textSize="30dp"
+
+        ></TextView>
+
+</LinearLayout>
