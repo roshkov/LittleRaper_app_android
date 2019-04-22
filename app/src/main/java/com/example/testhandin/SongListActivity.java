@@ -1,5 +1,6 @@
 package com.example.testhandin;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -22,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class SongListActivity extends AppCompatActivity {
+public class SongListActivity extends AppCompatActivity implements recycleAdapter.OnListItemClickListener{
 
 
     private static final String TAG = "mylog";
@@ -74,7 +76,7 @@ public class SongListActivity extends AppCompatActivity {
         mRecyclerViewList = findViewById(R.id.recycleViewSongs);
         mRecyclerViewList.hasFixedSize();
         mRecyclerViewList.setLayoutManager(new LinearLayoutManager(this));
-        mRecycleAdapter = new recycleAdapter(songArray);
+        mRecycleAdapter = new recycleAdapter(songArray,this);
         mRecyclerViewList.setAdapter(mRecycleAdapter);
 
 
@@ -113,6 +115,8 @@ public class SongListActivity extends AppCompatActivity {
 
         Log.i(TAG, songArray.toString());
         //here songArray empty
+
+
 
 
 
@@ -159,4 +163,22 @@ public class SongListActivity extends AppCompatActivity {
             }
         });
 
-    }}
+
+
+
+
+    }
+
+    public void onListItemClick (int clickedItemIndex) {
+        int songNum = clickedItemIndex;
+        String name = songArray.get(songNum);
+//        Toast.makeText(this, "Song name: " + name, Toast.LENGTH_SHORT).show();
+//        Toast.makeText(this, "Song Number: " + songNum, Toast.LENGTH_SHORT).show();
+//        startActivity(new Intent(SongListActivity.this, PartSongActivity.class));
+
+        Intent i = new Intent(SongListActivity.this, PartSongActivity.class);
+        i.putExtra("clickedSongName", name);
+        startActivity(i);
+
+    }
+}

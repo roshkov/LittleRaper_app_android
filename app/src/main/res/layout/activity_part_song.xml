@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SongListActivity">
+    tools:context=".PartSongActivity">
+
 
 
     <android.support.v7.widget.Toolbar
@@ -27,45 +28,37 @@
 
     </android.support.v7.widget.Toolbar>
 
-
-    <TextView
-        android:id="@+id/userEmailSL"
-        android:layout_width="130dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="72dp"
-        android:text="=email="
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/userNicknameSL"
-        android:layout_width="127dp"
-        android:layout_height="36dp"
-        android:layout_marginStart="4dp"
+    <Button
+        android:id="@+id/btnLyrics"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
         android:layout_marginTop="16dp"
-        android:text="=nickname="
-        app:layout_constraintStart_toEndOf="@+id/userEmailSL"
+        android:text="lyrics"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycleViewSongs"
-        android:layout_width="395dp"
-        android:layout_height="247dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userNicknameSL" />
 
     <Button
-        android:id="@+id/addNewSong"
-        android:layout_width="53dp"
-        android:layout_height="45dp"
+        android:id="@+id/btnRhyme"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="72dp"
-        android:layout_marginTop="1dp"
-        android:text="+"
-        android:textSize="20dp"
-        app:layout_constraintStart_toEndOf="@+id/userNicknameSL"
+        android:layout_marginTop="16dp"
+        android:text="rhyme"
+        app:layout_constraintStart_toEndOf="@+id/btnLyrics"
         app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+
+    <EditText
+        android:id="@+id/songLyricsTextView"
+        android:layout_width="381dp"
+        android:layout_height="540dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="52dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="here goes the lyrics"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLyrics" />
+
 
 </android.support.constraint.ConstraintLayout>

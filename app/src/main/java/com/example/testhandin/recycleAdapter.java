@@ -13,15 +13,21 @@ public class recycleAdapter extends RecyclerView.Adapter<recycleAdapter.ViewHold
 
 
     private ArrayList<String> songList;
+    final private OnListItemClickListener mOnListItemClickListener;
 
-    recycleAdapter(ArrayList<String> songList) {
-        this.songList = songList;}
+
+    recycleAdapter(ArrayList<String> songList, OnListItemClickListener listener) {
+        this.songList = songList;
+        mOnListItemClickListener = listener;
+    }
+
 
 
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType)
     {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         View view = inflater.inflate(R.layout.song_list_item, parent, false);
+
         return new ViewHolder(view);
     }
 
@@ -36,15 +42,32 @@ public class recycleAdapter extends RecyclerView.Adapter<recycleAdapter.ViewHold
     }
 
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         TextView name;
 
         ViewHolder(View itemView) {
             super(itemView);
             name = itemView.findViewById(R.id.myItemName);
+            itemView.setOnClickListener(this); //list item listens for any clicks
         }
+
+        @Override
+        public void onClick(View v){
+            mOnListItemClickListener.onListItemClick(getAdapterPosition()); //position of the view that was clicked
+
+        }
+
     }
+
+
+    ///////////clickListener
+    public interface OnListItemClickListener {
+        void onListItemClick(int clickedItemIndex);
+    }
+
+
+
 
 
 
