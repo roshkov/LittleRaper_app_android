@@ -117,11 +117,6 @@ public class SongListActivity extends AppCompatActivity implements recycleAdapte
 
                         }
 
-
-
-
-
-
                        }
 
                     }

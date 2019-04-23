@@ -31,6 +31,7 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class PartSongActivity extends AppCompatActivity {
 
@@ -39,6 +40,7 @@ public class PartSongActivity extends AppCompatActivity {
     FirebaseUser firebaseUser;
     private DatabaseReference mDatabase;
     private DatabaseReference songRef;
+    private String csID;
 
     Button lyricsbtn;
     Button rhymebtn;
@@ -67,6 +69,8 @@ public class PartSongActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         final String clickedSid = intent.getExtras().getString("clickedSongID");  //stores unique ID of song clicked
+
+        //csID = clickedSid;
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
@@ -97,17 +101,12 @@ public class PartSongActivity extends AppCompatActivity {
         });
 
 
-
             btnRhyme.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View view){
-
-
                 GetRhymeAsync task = new GetRhymeAsync();
                 task.execute(REQUEST_URL);
-
-
             }
         });
 
@@ -125,7 +124,7 @@ public class PartSongActivity extends AppCompatActivity {
 
 
     }
-
+/////////////////////////////////////////////////////////////////////////////////////////////
     private String makeHttpRequest(URL url) throws IOException {
         String jsonResponse = "";
 
@@ -207,12 +206,7 @@ public class PartSongActivity extends AppCompatActivity {
                     JSONObject e = json.getJSONObject(i);
                     rhymelist.add(e.getString("word"));
                     rhymesTV.append(rhymelist.get(i)+ "\n");
-                }
-
-                }
-
-
-
+                } }
             } catch (JSONException e) {
                 e.printStackTrace();
             }
@@ -222,9 +216,19 @@ public class PartSongActivity extends AppCompatActivity {
 
     public void onStop () {
 
+        String songNameS = (String) toolbar.getTitle();///because name may changed in process
+        String songLyricsS = songLyrics.getText().toString();
+
+        DatabaseReference hopperRef = songRef;
+        Map<String, Object> hopperUpdates = new HashMap<>();
+
+        hopperUpdates.put("songName", songNameS);
+        hopperUpdates.put("songLyrics", songLyricsS);
+
+        hopperRef.updateChildren(hopperUpdates);
 
 
-
+        
         super.onStop();
     }
 
