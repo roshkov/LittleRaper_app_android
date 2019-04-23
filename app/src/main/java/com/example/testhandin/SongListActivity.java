@@ -23,11 +23,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class SongListActivity extends AppCompatActivity implements recycleAdapter.OnListItemClickListener{
 
 
-    private static final String TAG = "mylog";
+    private static final String TAG = "________mylog______:";
     Toolbar toolbar;
     ProgressBar progressBar;
     //ListView SlistView;
@@ -39,7 +40,9 @@ public class SongListActivity extends AppCompatActivity implements recycleAdapte
     //TextView userSongs;
 
 
-    ArrayList<String> songArray;
+//    ArrayList<String> songArray;
+
+    ArrayList<Song> songArray;
 
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
@@ -62,7 +65,8 @@ public class SongListActivity extends AppCompatActivity implements recycleAdapte
 
 
 
-        songArray = new ArrayList<String>();
+//        songArray = new ArrayList<String>();
+        songArray = new ArrayList<Song>();
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         userRef = FirebaseDatabase.getInstance().getReference("users/"+firebaseUser.getUid().toString());
@@ -95,29 +99,6 @@ public class SongListActivity extends AppCompatActivity implements recycleAdapte
 
     });
 
-        ArrayList test = new ArrayList<String>();
-        test.add("Test1");
-        test.add("Test2");
-        test.add("Test3");
-        test.add("Test4");
-        test.add("Test5");
-        test.add("Test6");
-
-        //for itemList
-      //  final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, songArray);
-       // SlistView.setAdapter(adapter);
-
-
-        //for recyclerView
-//        mRecycleAdapter = new recycleAdapter(songArray);
-//        mRecyclerViewList.setAdapter(mRecycleAdapter);
-
-
-        Log.i(TAG, songArray.toString());
-        //here songArray empty
-
-
-
 
 
         userSongsRef.addValueEventListener(new ValueEventListener() {
@@ -126,24 +107,29 @@ public class SongListActivity extends AppCompatActivity implements recycleAdapte
                 for(DataSnapshot dSnapshot : dataSnapshot.getChildren()) {
                     for(DataSnapshot ds : dSnapshot.getChildren()) {
 
-                       if(ds.getKey().equals("songName")) {
-                           String key = ds.getValue(String.class);
-                           // userSongs.append("\n");
-                           //userSongs.append(key);
-                           songArray.add(key);
-                           //adapter.notifyDataSetChanged();
-                           //adapter.add(key);
-                           mRecycleAdapter.notifyDataSetChanged();
+                        String keyName = null;
+                        String id = dSnapshot.getKey();
+                        if(ds.getKey().equals("songName")) {
+                            keyName = ds.getValue(String.class);
+                            Song song = new Song (id,keyName, 1);
+                            songArray.add(song);
+                            mRecycleAdapter.notifyDataSetChanged();
+
+                        }
+
+
+
+
 
 
                        }
 
                     }
-
+//                Log.i(TAG, songArray.get(0).songName+"_+_" + songArray.get(0).songID + "\n"+ songArray.get(1).songName+ "_+_" + songArray.get(1).songID );
                 }
                    // userSongs.setText(songArray.toString());
-                Log.i(TAG, songArray.toString());
-            }
+
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 System.out.println("The read failed: " + databaseError.getCode());
@@ -171,13 +157,16 @@ public class SongListActivity extends AppCompatActivity implements recycleAdapte
 
     public void onListItemClick (int clickedItemIndex) {
         int songNum = clickedItemIndex;
-        String name = songArray.get(songNum);
+        String name = songArray.get(songNum).songName;
+        String sId = songArray.get(songNum).songID;
+        Log.i(TAG, sId);
 //        Toast.makeText(this, "Song name: " + name, Toast.LENGTH_SHORT).show();
 //        Toast.makeText(this, "Song Number: " + songNum, Toast.LENGTH_SHORT).show();
 //        startActivity(new Intent(SongListActivity.this, PartSongActivity.class));
 
         Intent i = new Intent(SongListActivity.this, PartSongActivity.class);
-        i.putExtra("clickedSongName", name);
+//        i.putExtra("clickedSongName", name);
+        i.putExtra("clickedSongID", sId);
         startActivity(i);
 
     }

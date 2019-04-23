@@ -9,8 +9,7 @@ import java.util.Map;
 @IgnoreExtraProperties
 public class Song {
 
-
-
+   public String songID;
    public String songName;
    public String songLyrics;
 
@@ -19,10 +18,10 @@ public class Song {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)
     }
 
-    public Song(String songName)
-    {
-        this.songName = songName;
-    }
+//    public Song(String songName)
+//    {
+//        this.songName = songName;
+//    }
 
     public Song(String songName,String songLyrics){
         this.songName = songName;
@@ -30,6 +29,12 @@ public class Song {
     }
 
 
+    public Song(String songID, String songName, int num){
+        this.songID = songID;
+        this.songName = songName;
+    }
+
+    //for adding only
     @Exclude
     public Map<String, Object> toMap() {
         HashMap<String, Object> result = new HashMap<>();

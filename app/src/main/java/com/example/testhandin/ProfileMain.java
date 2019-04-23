@@ -163,4 +163,8 @@ public class ProfileMain extends AppCompatActivity {
 
 
     }
+
+    public void onBackPressed() {
+        //do nothing
+    }
 }

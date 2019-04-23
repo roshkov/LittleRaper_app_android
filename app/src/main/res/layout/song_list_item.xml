@@ -9,10 +9,22 @@
     <TextView
         android:id="@+id/myItemName"
         android:layout_width="408dp"
-        android:layout_height="50dp"
+        android:layout_height="wrap_content"
         android:text="MyItem"
         android:textSize="30dp"
 
         ></TextView>
+
+    <TextView
+        android:id="@+id/myItemLyrics"
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:text="TextView"
+        android:layout_gravity="bottom|center_horizontal"
+        />
+
+
+
+
 
 </LinearLayout>
