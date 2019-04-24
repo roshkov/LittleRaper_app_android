@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SongListActivity">
+    tools:context=".SongListActivity"
+    android:background="#ffffff" >
 
 
     <android.support.v7.widget.Toolbar
@@ -50,15 +51,14 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycleViewSongs"
-        android:layout_width="395dp"
+        android:layout_width="412dp"
         android:layout_height="509dp"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/userNicknameSL"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp" />
 
     <Button
         android:id="@+id/addNewSong"

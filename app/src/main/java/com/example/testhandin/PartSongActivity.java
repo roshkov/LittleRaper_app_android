@@ -1,5 +1,6 @@
 package com.example.testhandin;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
@@ -113,12 +114,13 @@ public class PartSongActivity extends AppCompatActivity {
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
+//                onStop();
+//                Intent intent = new Intent(PartSongActivity.this, SongListActivity.class); //in order to lyrics field to be updated
 //                startActivity(intent);
-                finish();
+//
+//             finish();
+                onBackPressed();
             }
-
-
         });
 
 
@@ -228,9 +230,22 @@ public class PartSongActivity extends AppCompatActivity {
         hopperRef.updateChildren(hopperUpdates);
 
 
-        
+
         super.onStop();
     }
 
+    @Override
+    public void onBackPressed() {
+
+        onStop();
+
+        Intent returnIntent = new Intent();
+        returnIntent.putExtra("result",songLyrics.getText().toString());
+        setResult(Activity.RESULT_OK,returnIntent);
+        finish();
+
+
+
+    }
 
 }

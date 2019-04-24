@@ -38,14 +38,16 @@ public class recycleAdapter extends RecyclerView.Adapter<recycleAdapter.ViewHold
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
 //        viewHolder.name.setText(songList.get(i));
         viewHolder.name.setText(songList.get(i).songName);
+        String dots = "...";
 
         int charAmount = 40;
-        if(songList.get(i).songID.length() < 40 ){
-            charAmount = songList.get(i).songID.length();
+        if(songList.get(i).songLyrics.length() < 40 ){
+            charAmount = songList.get(i).songLyrics.length();
+            dots="";
         }
 
-        String lyrSnip = songList.get(i).songID.substring(0,charAmount);
-        viewHolder.lyricsSnippet.setText(lyrSnip);
+        String lyrSnip = songList.get(i).songLyrics.substring(0,charAmount);
+        viewHolder.lyricsSnippet.setText(lyrSnip+dots);
     }
 
 

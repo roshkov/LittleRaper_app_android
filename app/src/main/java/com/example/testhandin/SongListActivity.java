@@ -1,5 +1,6 @@
 package com.example.testhandin;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -35,6 +37,7 @@ public class SongListActivity extends AppCompatActivity implements recycleAdapte
     RecyclerView mRecyclerViewList;
     RecyclerView.Adapter mRecycleAdapter;
 
+    String lastClicked;
     TextView userEmail;
     TextView userNickname;
     //TextView userSongs;
@@ -62,7 +65,7 @@ public class SongListActivity extends AppCompatActivity implements recycleAdapte
         userNickname = findViewById (R.id.userNicknameSL);
         //userSongs = findViewById(R.id.userSongsSL);
         //SlistView = findViewById(R.id.SongListView);
-
+        final String lastClicked=null;
 
 
 //        songArray = new ArrayList<String>();
@@ -104,21 +107,37 @@ public class SongListActivity extends AppCompatActivity implements recycleAdapte
         userSongsRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                boolean exists = false;
+                String keyLyrics = null;
+                String keyName = null;
+                songArray.clear();
+
                 for(DataSnapshot dSnapshot : dataSnapshot.getChildren()) {
+
+                    String id = dSnapshot.getKey();
+
+
+                    if (exists) { continue;}
+
                     for(DataSnapshot ds : dSnapshot.getChildren()) {
 
-                        String keyName = null;
-                        String id = dSnapshot.getKey();
+
                         if(ds.getKey().equals("songName")) {
                             keyName = ds.getValue(String.class);
-                            Song song = new Song (id,keyName, 1);
-                            songArray.add(song);
-                            mRecycleAdapter.notifyDataSetChanged();
-
+//                            Song song = new Song (id,keyName, 1);
+                        }
+                        if(ds.getKey().equals("songLyrics")) {
+                            keyLyrics = ds.getValue(String.class);
+//                            Song song = new Song (id,keyName, 1);
                         }
 
                        }
+                    //Log.i(TAG,keyName+" , "+keyLyrics);
+                    Song song = new Song (id,keyName, keyLyrics);
 
+
+                    songArray.add(song);
+                    mRecycleAdapter.notifyDataSetChanged();
                     }
 //                Log.i(TAG, songArray.get(0).songName+"_+_" + songArray.get(0).songID + "\n"+ songArray.get(1).songName+ "_+_" + songArray.get(1).songID );
                 }
@@ -154,6 +173,7 @@ public class SongListActivity extends AppCompatActivity implements recycleAdapte
         int songNum = clickedItemIndex;
         String name = songArray.get(songNum).songName;
         String sId = songArray.get(songNum).songID;
+        lastClicked = sId;
         Log.i(TAG, sId);
 //        Toast.makeText(this, "Song name: " + name, Toast.LENGTH_SHORT).show();
 //        Toast.makeText(this, "Song Number: " + songNum, Toast.LENGTH_SHORT).show();
@@ -162,7 +182,34 @@ public class SongListActivity extends AppCompatActivity implements recycleAdapte
         Intent i = new Intent(SongListActivity.this, PartSongActivity.class);
 //        i.putExtra("clickedSongName", name);
         i.putExtra("clickedSongID", sId);
-        startActivity(i);
+
+
+        startActivityForResult(i,1);
+       // finish();
 
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 1) {
+            if(resultCode == Activity.RESULT_OK){
+
+                for (int i = 0; i< songArray.size(); i++) {
+                    if (songArray.get(i).songID.equals(lastClicked)) {
+                        songArray.get(i).songLyrics = data.getStringExtra("result");
+
+//                        Toast toast = Toast.makeText(SongListActivity.this, "size: "+songArray.size(), Toast.LENGTH_LONG);
+//                        toast.setGravity(Gravity.CENTER, 0, 0);
+//                        toast.show();
+                    }
+                }
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                //Write your code if there's no result
+            }
+        }
+    }//onActivityResult
+
+
 }

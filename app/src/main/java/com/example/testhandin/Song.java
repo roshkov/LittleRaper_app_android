@@ -29,9 +29,10 @@ public class Song {
     }
 
 
-    public Song(String songID, String songName, int num){
+    public Song(String songID, String songName, String keyLyrics){
         this.songID = songID;
         this.songName = songName;
+        this.songLyrics = keyLyrics;
     }
 
     //for adding only

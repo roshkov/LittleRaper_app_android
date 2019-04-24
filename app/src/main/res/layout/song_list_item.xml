@@ -4,27 +4,29 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:orientation="vertical"
-    android:background="#ee4" >
+    android:background="#ffffff" >
+
 
     <TextView
         android:id="@+id/myItemName"
-        android:layout_width="408dp"
-        android:layout_height="wrap_content"
+        android:layout_width="394dp"
+        android:layout_height="56dp"
         android:text="MyItem"
         android:textSize="30dp"
-
+        android:paddingTop="10dp"
         ></TextView>
 
     <TextView
         android:id="@+id/myItemLyrics"
-        android:layout_width="match_parent"
+        android:layout_width="380dp"
         android:layout_height="34dp"
-        android:text="TextView"
+        android:layout_gravity="bottom|center_horizontal"
+        android:text="TextView" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
         android:layout_gravity="bottom|center_horizontal"
         />
-
-
-
-
-
 </LinearLayout>
