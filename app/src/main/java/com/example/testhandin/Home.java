@@ -24,7 +24,7 @@ public class Home extends Application {
 
 //            startActivity(new Intent(Home.this, ProfileMain.class));
 
-            Intent intent = new Intent (Home.this, ProfileMain.class);
+            Intent intent = new Intent (Home.this, MainActivity.class); ////if logged in, then go there straight away
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
         }

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/avatarProfile"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginTop="60dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars[0]" />
+
+    <Button
+        android:id="@+id/changeImgBtn"
+        android:layout_width="107dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="64dp"
+        android:text="Change Image"
+        app:layout_constraintStart_toEndOf="@+id/avatarProfile"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/deleteImgBtn"
+        android:layout_width="112dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="12dp"
+        android:text="Delete Image"
+        app:layout_constraintStart_toEndOf="@+id/avatarProfile"
+        app:layout_constraintTop_toBottomOf="@+id/changeImgBtn" />
+
+    <TextView
+        android:id="@+id/nicknameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="72dp"
+        android:text="Nickname: "
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/avatarProfile" />
+
+    <TextView
+        android:id="@+id/aboutTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="27dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="56dp"
+        android:text="About: "
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nicknameTextView" />
+
+    <EditText
+        android:id="@+id/nicknameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="64dp"
+        android:ems="10"
+
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintStart_toEndOf="@+id/nicknameTextView"
+        app:layout_constraintTop_toBottomOf="@+id/avatarProfile" />
+
+    <EditText
+        android:id="@+id/aboutEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="38dp"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="44dp"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:lines="3"
+        app:layout_constraintStart_toEndOf="@+id/aboutTextView"
+        app:layout_constraintTop_toBottomOf="@+id/nicknameEditText" />
+
+    <TextView
+        android:id="@+id/emailTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="64dp"
+        android:text="Email:"
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aboutEditText" />
+
+    <TextView
+        android:id="@+id/actualEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="64dp"
+        android:hint="TextView"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/emailTextView"
+        app:layout_constraintTop_toBottomOf="@+id/aboutEditText" />
+
+    <Button
+        android:id="@+id/saveChangesBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="8dp"
+        android:text="Save Changes"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.451"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/actualEmail" />
+</android.support.constraint.ConstraintLayout>

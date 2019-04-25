@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SongListActivity"
+    android:background="#ffffff" >
+
+
+    <!--<android.support.v7.widget.Toolbar-->
+        <!--android:id="@+id/toolbar2"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="?attr/colorPrimary"-->
+        <!--android:minHeight="?attr/actionBarSize"-->
+        <!--app:navigationIcon="?attr/homeAsUpIndicator"-->
+        <!--android:theme="@style/ThemeOverlay.AppCompat.Dark" >-->
+        <!--&lt;!&ndash; Login progress &ndash;&gt;-->
+        <!--<ProgressBar-->
+            <!--android:id="@+id/login_progress2"-->
+            <!--style="?android:attr/progressBarStyle"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_gravity="end"-->
+            <!--android:layout_marginBottom="8dp"-->
+            <!--android:visibility="gone" />-->
+
+    <!--</android.support.v7.widget.Toolbar>-->
+
+
+    <TextView
+        android:id="@+id/userNicknameSL"
+        android:layout_width="127dp"
+        android:layout_height="36dp"
+        android:layout_marginTop="8dp"
+        android:text=""
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycleViewSongs"
+        android:layout_width="412dp"
+        android:layout_height="509dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/userNicknameSL"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <Button
+        android:id="@+id/addNewSong"
+        android:layout_width="53dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="208dp"
+        android:text="+"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@+id/userNicknameSL"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+
+    <TextView
+        android:id="@+id/NotesWord"
+        android:layout_width="62dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="8dp"
+        android:text="Notes"
+        app:layout_constraintStart_toEndOf="@+id/notesAmount"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+
+    <TextView
+        android:id="@+id/notesAmount"
+        android:layout_width="18dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:hint=""
+        app:layout_constraintStart_toEndOf="@+id/userNicknameSL"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar2" />
+
+</android.support.constraint.ConstraintLayout>

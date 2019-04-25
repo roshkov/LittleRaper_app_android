@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -51,7 +52,7 @@ public class PartSongActivity extends AppCompatActivity {
     Button btnRhyme;
     TextView rhymesTV;
 
-    static final String REQUEST_URL = "https://api.datamuse.com/words?rel_rhy=wallet";
+    static final String REQUEST_URL = "https://api.datamuse.com/words?rel_rhy=table";
 //    static final String REQUEST_URL = "https://www.googleapis.com/books/v1/volumes?q=android&maxResults=3";
 
     @Override
@@ -77,7 +78,7 @@ public class PartSongActivity extends AppCompatActivity {
         firebaseUser = firebaseAuth.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         songRef= FirebaseDatabase.getInstance().getReference("users/"+firebaseUser.getUid()+"/songs/"+clickedSid);
-
+        Log.i(TAG, clickedSid);
 //
 //        Intent intent = getIntent();
 //        final String clickedSName = intent.getExtras().getString("clickedSongName");  //stores name of song clicked

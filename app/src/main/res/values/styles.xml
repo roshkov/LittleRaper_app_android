@@ -8,4 +8,37 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <style name="AppTheme.CustomTheme">
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="android:windowBackground">@android:color/darker_gray</item>
+    </style>
+    <!--<style name="NavigationDrawerStyle">-->
+
+        <!--<item name="android:textSize">20dp</item>&lt;!&ndash; text size in menu&ndash;&gt;-->
+
+        <!--&lt;!&ndash; item size in menu&ndash;&gt;-->
+        <!--<item name="android:listPreferredItemHeightSmall">40dp</item>-->
+        <!--<item name="listPreferredItemHeightSmall">40dp</item>-->
+
+        <!--&lt;!&ndash; item padding left in menu&ndash;&gt;-->
+        <!--<item name="android:listPreferredItemPaddingLeft">8dp</item>-->
+        <!--<item name="listPreferredItemPaddingLeft">8dp</item>-->
+
+        <!--&lt;!&ndash; item padding right in menu&ndash;&gt;-->
+        <!--<item name="android:listPreferredItemPaddingRight">8dp</item>-->
+        <!--<item name="listPreferredItemPaddingRight">8dp</item>-->
+    <!--</style>-->
+
+
 </resources>
