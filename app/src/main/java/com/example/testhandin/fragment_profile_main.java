@@ -21,6 +21,8 @@ import static com.example.testhandin.MainActivity.progressBarMain;
 public class fragment_profile_main extends Fragment {
 
     Button userSignOut;
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -38,19 +40,19 @@ public class fragment_profile_main extends Fragment {
 
         view.findViewById(R.id.circleK).startAnimation(rotateAnimation);
 
-        userSignOut.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view)
-            {
-                FirebaseAuth.getInstance().signOut();
-                Intent intent = new Intent(getActivity(), LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-
-
-            }
-        });
+//        userSignOut.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view)
+//            {
+//                FirebaseAuth.getInstance().signOut();
+//                Intent intent = new Intent(getActivity(), LoginActivity.class);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                startActivity(intent);
+//
+//
+//            }
+//        });
 
 
         ///////////

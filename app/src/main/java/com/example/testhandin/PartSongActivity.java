@@ -6,6 +6,8 @@ import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
@@ -41,8 +43,10 @@ public class PartSongActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
     private DatabaseReference mDatabase;
-    private DatabaseReference songRef;
+    DatabaseReference songRef;
     private String csID;
+    DatabaseReference songRefDel;
+    boolean isDeleted = false;
 
     Button lyricsbtn;
     Button rhymebtn;
@@ -71,6 +75,7 @@ public class PartSongActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         final String clickedSid = intent.getExtras().getString("clickedSongID");  //stores unique ID of song clicked
+        csID = clickedSid;
 
         //csID = clickedSid;
 
@@ -78,6 +83,7 @@ public class PartSongActivity extends AppCompatActivity {
         firebaseUser = firebaseAuth.getCurrentUser();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         songRef= FirebaseDatabase.getInstance().getReference("users/"+firebaseUser.getUid()+"/songs/"+clickedSid);
+        songRefDel = songRef;
         Log.i(TAG, clickedSid);
 //
 //        Intent intent = getIntent();
@@ -86,14 +92,18 @@ public class PartSongActivity extends AppCompatActivity {
 
 //        songLyrics.setText(clickedSid);
 
+        setSupportActionBar(toolbar);
+
         songRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Song song = dataSnapshot.getValue(Song.class);
-                songLyrics.setText(song.songLyrics);
-                toolbar.setTitle(song.songName);
-                //userSongs.setText(user.songList.get(1).songName);
 
+                if (song!=null) {
+                    songLyrics.setText(song.songLyrics);
+                    toolbar.setTitle(song.songName);
+                    //userSongs.setText(user.songList.get(1).songName);
+                }
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
@@ -216,21 +226,59 @@ public class PartSongActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_songlist, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+
+
+        switch (item.getItemId()) {
+            case R.id.editTitleBtn:
+
+                Intent i = new Intent(PartSongActivity.this, Pop_changetitle.class);
+                i.putExtra("thisSongName", toolbar.getTitle());
+//                startActivity(i);
+                startActivityForResult(i,3);
+
+                break;
+            case R.id.deleteImgBtn:
+                songRefDel= FirebaseDatabase.getInstance().getReference("users/"+firebaseUser.getUid()+"/songs/"+csID);
+                songRefDel.removeValue();
+                isDeleted = true;
+                finish();
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
 
     public void onStop () {
 
-        String songNameS = (String) toolbar.getTitle();///because name may changed in process
-        String songLyricsS = songLyrics.getText().toString();
+        if (!isDeleted) {
+            String songNameS = (String) toolbar.getTitle();///because name may changed in process
+            String songLyricsS = songLyrics.getText().toString();
 
-        DatabaseReference hopperRef = songRef;
-        Map<String, Object> hopperUpdates = new HashMap<>();
+            DatabaseReference hopperRef = songRef;
+            Map<String, Object> hopperUpdates = new HashMap<>();
 
-        hopperUpdates.put("songName", songNameS);
-        hopperUpdates.put("songLyrics", songLyricsS);
+            hopperUpdates.put("songName", songNameS);
+            hopperUpdates.put("songLyrics", songLyricsS);
 
-        hopperRef.updateChildren(hopperUpdates);
+            hopperRef.updateChildren(hopperUpdates);
 
-
+        }
 
         super.onStop();
     }
@@ -245,8 +293,27 @@ public class PartSongActivity extends AppCompatActivity {
         setResult(Activity.RESULT_OK,returnIntent);
         finish();
 
-
-
     }
+
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (requestCode == 3) {
+
+            if(resultCode == Activity.RESULT_OK){
+
+
+                    toolbar.setTitle(data.getStringExtra("resultName"));
+                    Log.i(TAG, data.getStringExtra("resultName"));
+
+            }
+            if (resultCode == Activity.RESULT_CANCELED) {
+                Log.i(TAG,"reaches cancel");
+                //Write your code if there's no result
+            }
+        }
+    }
+
 
 }

@@ -1,5 +1,7 @@
 package com.example.testhandin;
 
+import android.net.Uri;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.IgnoreExtraProperties;
 
@@ -16,7 +18,7 @@ public class User {
     public String nickname;
     public String about;
     public ArrayList<Song> songList;
-
+    public String userPic;
 
     public User() {
         // Default constructor required for calls to DataSnapshot.getValue(User.class)

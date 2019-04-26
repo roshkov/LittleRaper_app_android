@@ -46,7 +46,9 @@ public class recycleAdapter extends RecyclerView.Adapter<recycleAdapter.ViewHold
             dots="";
         }
 
+
         String lyrSnip = songList.get(i).songLyrics.substring(0,charAmount);
+        lyrSnip = lyrSnip.replace("\n", " ").replace("\r", " ");
         viewHolder.lyricsSnippet.setText(lyrSnip+dots);
     }
 

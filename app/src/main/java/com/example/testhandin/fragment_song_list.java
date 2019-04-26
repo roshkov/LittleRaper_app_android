@@ -28,6 +28,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import static com.example.testhandin.MainActivity.progressBarMain;
 
@@ -76,19 +77,16 @@ public class fragment_song_list extends Fragment implements recycleAdapter.OnLis
 
         final String lastClicked=null;
 
-
-
         songListLoad =  getActivity().findViewById(R.id.slProgress);
 
-
-        if (songListLoad==null)
-        { Log.i(TAG,"bar is null");}
 
 
 //        songArray = new ArrayList<String>();
         songArray = new ArrayList<Song>();
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
+//        String usern = firebaseAuth.getInstance().getCurrentUser().getUid();;
+//        userRef = FirebaseDatabase.getInstance().getReference("users/"+usern);
         userRef = FirebaseDatabase.getInstance().getReference("users/"+firebaseUser.getUid().toString());
         userSongsRef = FirebaseDatabase.getInstance().getReference("users/"+firebaseUser.getUid()+"/songs");
 
@@ -153,7 +151,7 @@ public class fragment_song_list extends Fragment implements recycleAdapter.OnLis
 
 
                 }
-//
+              Collections.reverse(songArray);
                 Log.i(TAG, songArray.get(0).songName+"_+_" + songArray.get(0).songID + "\n"+ songArray.get(1).songName+ "_+_" + songArray.get(1).songID );
 
 

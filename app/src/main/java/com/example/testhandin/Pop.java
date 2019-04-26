@@ -55,11 +55,11 @@ public class Pop extends AppCompatActivity {
 
         getWindow().setLayout((int) (width*0.7),(int) (height*0.4));
 
-        boolean a;
-        if (sNameET == null){ a = true; }
-        else{ a = false;}
-
-        Log.i(TAG,"equals null: "+ a );
+//        boolean a;
+//        if (sNameET == null){ a = true; }
+//        else{ a = false;}
+//
+//        Log.i(TAG,"equals null: "+ a );
 
 
 

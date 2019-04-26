@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity"
+    >
+
+    <item
+        android:id="@+id/editTitleBtn"
+        android:orderInCategory="200"
+        android:icon="@drawable/ic_edit_min"
+        android:title="change"
+        app:showAsAction="ifRoom"/>
+    <item
+        android:id="@+id/deleteNote"
+        android:orderInCategory="300"
+        android:icon="@drawable/ic_deletenote"
+        android:title="delete"
+        app:showAsAction="ifRoom" />
+</menu>

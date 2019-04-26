@@ -3,6 +3,7 @@ package com.example.testhandin;
 import android.app.Activity;
 import android.content.Intent;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -39,6 +40,9 @@ public class fragment_edit_personal_data extends Fragment {
     EditText aboutET;
     Button saveBtn;;
     String TAG = "mylog========";
+    Button changeImg;
+    ImageView avatarPic;
+    Uri selectedImage;
 
     @Nullable
     @Override
@@ -56,6 +60,8 @@ public class fragment_edit_personal_data extends Fragment {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         userRef = FirebaseDatabase.getInstance().getReference("users/"+firebaseUser.getUid().toString());
 
+        avatarPic = view.findViewById(R.id.avatarProfile);
+        changeImg = view.findViewById(R.id.changeImgBtn);
         saveBtn = view.findViewById(R.id.saveChangesBtn);
         TextView myemail = view.findViewById(R.id.actualEmail);
         myemail.setText(firebaseUser.getEmail());
@@ -84,6 +90,24 @@ public class fragment_edit_personal_data extends Fragment {
 
 
 
+        changeImg.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v){
+
+                //Create an Intent with action as ACTION_PICK
+                Intent intent=new Intent(Intent.ACTION_PICK);
+                // Sets the type as image/*. This ensures only components of type image are selected
+                intent.setType("image/*");
+                //We pass an extra array with the accepted mime types. This will ensure only components with these MIME types as targeted.
+                String[] mimeTypes = {"image/jpeg", "image/png"};
+                intent.putExtra(Intent.EXTRA_MIME_TYPES,mimeTypes);
+                // Launching the Intent
+                startActivityForResult(intent,10);
+
+            }
+        });
+
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,8 +118,10 @@ public class fragment_edit_personal_data extends Fragment {
                 String nickname = firebaseUser.getUid().toString()+"/nickname";
                 String about = firebaseUser.getUid().toString()+"/about";
 
+
                 userUpdates.put(nickname, nickET.getText().toString());
                 userUpdates.put(about, aboutET.getText().toString());
+
 
                 userRef.updateChildren(userUpdates);
                 Toast.makeText(getActivity(), "Data changed", Toast.LENGTH_LONG).show();
@@ -114,7 +140,17 @@ public class fragment_edit_personal_data extends Fragment {
         super.onCreate(savedInstanceState);
     }
 
-
+    public void onActivityResult(int requestCode,int resultCode,Intent data){
+        // Result code is RESULT_OK only if the user selects an Image
+        if (resultCode == Activity.RESULT_OK)
+            switch (requestCode){
+                case 10:
+                    //data.getData returns the content URI for the selected Image
+                    selectedImage = data.getData();
+                    avatarPic.setImageURI(selectedImage);
+                    break;
+            }
+    }
 
 //
 
