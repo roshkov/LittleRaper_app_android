@@ -31,7 +31,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText userPass;
     Button userRegister;
     Button userLogin;
-//
+    MainActivity activityReferenceVarMain;
+    //
 
 
     private FirebaseAuth mAuth;
@@ -51,6 +52,7 @@ public class LoginActivity extends AppCompatActivity {
         toolbar.setTitle(R.string.app_name);
 
         mAuth = FirebaseAuth.getInstance();
+
 
 
 //for registering

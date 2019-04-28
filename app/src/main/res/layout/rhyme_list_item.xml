@@ -1,0 +1,24 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:orientation="vertical"
+    android:background="#ffffff" >
+
+
+    <TextView
+        android:id="@+id/myItemName"
+        android:layout_width="394dp"
+        android:layout_height="42dp"
+        android:gravity="center_vertical"
+        android:text="MyItem"
+        android:textSize="20dp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@android:color/darker_gray"
+        android:layout_gravity="bottom|center_horizontal"
+        />
+</LinearLayout>

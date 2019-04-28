@@ -23,6 +23,14 @@
         <item name="android:windowCloseOnTouchOutside">true</item>
         <item name="android:windowBackground">@android:color/darker_gray</item>
     </style>
+
+    <style name="SCBSwitch" >
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">@color/AIESECRed</item>
+
+
+    </style>
+
     <!--<style name="NavigationDrawerStyle">-->
 
         <!--<item name="android:textSize">20dp</item>&lt;!&ndash; text size in menu&ndash;&gt;-->
@@ -39,6 +47,14 @@
         <!--<item name="android:listPreferredItemPaddingRight">8dp</item>-->
         <!--<item name="listPreferredItemPaddingRight">8dp</item>-->
     <!--</style>-->
+
+
+    <style name="AIESECTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#037ef3</item>
+        <item name="colorPrimaryDark">#0a8ea0</item>
+        <item name="colorAccent">#f48924</item>
+    </style>
 
 
 </resources>

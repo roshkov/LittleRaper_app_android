@@ -197,8 +197,9 @@ public class fragment_song_list extends Fragment implements recycleAdapter.OnLis
         String sId = songArray.get(songNum).songID;
         lastClicked = sId;
         Log.i(TAG, sId);
-
-        Intent i = new Intent(getActivity(), PartSongActivity.class);
+/////////////////////////////////////////////////////////////////////////////////////////////////HERE!
+        //Intent i = new Intent(getActivity(), PartSongActivity.class);
+        Intent i = new Intent(getActivity(), ThisSongActivity.class);
 //        i.putExtra("clickedSongName", name);
         i.putExtra("clickedSongID", sId);
 

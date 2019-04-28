@@ -19,7 +19,7 @@
         <item
             android:id="@+id/nav_inspiration"
 
-            android:title="Inspiratiom" />
+            android:title="Inspiration" />
 
     </group>
 
@@ -32,10 +32,6 @@
 
             android:title="Profile" />
 
-        <item
-            android:id="@+id/nav_settings"
-
-            android:title="Settings" />
 
 
     </group>

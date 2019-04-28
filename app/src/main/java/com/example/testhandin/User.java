@@ -37,6 +37,7 @@ public class User {
         this.email = email;
         this.about = about;
         songList = new ArrayList<Song>();
+        userPic="";
     }
 
 }

@@ -8,21 +8,35 @@
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher_round" />
+    <!--<ImageView-->
+        <!--android:id="@+id/profImage"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:src="@mipmap/ic_launcher_round" />-->
 
     <TextView
+        android:id="@+id/circleName"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:textSize="50dp"
+        android:background="@drawable/circle"
+        android:textColor="#ffffff"
+        android:gravity="center"
+        android:text=""/>
+
+
+    <TextView
+        android:id="@+id/nicknameNAV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="8dp"
-        android:text="Coding in Flow"
+        android:text=""
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
+        android:id="@+id/emailNAV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="info@codinginflow.com" />
+        android:text="email" />
 
 </LinearLayout>

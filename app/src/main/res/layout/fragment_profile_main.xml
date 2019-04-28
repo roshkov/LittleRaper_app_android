@@ -30,7 +30,9 @@
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/circlek_logo" />
+        app:srcCompat="@mipmap/circlek_logo"
+        android:onClick="mainCreateNote"
+        />
 
     <ImageView
         android:id="@+id/note"
@@ -43,7 +45,9 @@
         app:layout_constraintHorizontal_bias="0.645"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/note_icon_f" />
+        app:srcCompat="@mipmap/note_icon_f"
+        android:onClick="mainCreateNote"
+        />
 
     <TextView
         android:id="@+id/textView"

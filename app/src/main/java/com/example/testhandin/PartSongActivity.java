@@ -2,7 +2,10 @@ package com.example.testhandin;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
+import android.preference.PreferenceManager;
+import android.provider.Telephony;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,6 +51,7 @@ public class PartSongActivity extends AppCompatActivity {
     DatabaseReference songRefDel;
     boolean isDeleted = false;
 
+
     Button lyricsbtn;
     Button rhymebtn;
     Toolbar toolbar;
@@ -64,6 +68,16 @@ public class PartSongActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_part_song);
 
+//        int defaultValue =getResources().getColor(R.color.colorPrimary);
+//        SharedPreferences mPrefs = getSharedPreferences("tb_main_color",getResources().getColor(R.color.colorPrimary));
+//        int defaultValue =getResources().getColor(R.color.colorPrimary);
+//        int ColorT= mPrefs.getInt("ToolbarTheme", defaultValue);
+
+
+
+
+        final SharedPreferences mSharedPreference= PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        String value=(mSharedPreference.getString("tb_main_color", "Default_Value"));
 
         lyricsbtn = findViewById(R.id.btnLyrics);
         rhymebtn = findViewById(R.id.btnRhyme);
@@ -94,6 +108,18 @@ public class PartSongActivity extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
 
+
+
+
+        rhymebtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(PartSongActivity.this, ThisSongActivity.class);
+                startActivity(i);
+            }
+            });
+
         songRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -113,14 +139,14 @@ public class PartSongActivity extends AppCompatActivity {
         });
 
 
-            btnRhyme.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View view){
-                GetRhymeAsync task = new GetRhymeAsync();
-                task.execute(REQUEST_URL);
-            }
-        });
+//            btnRhyme.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View view){
+//                GetRhymeAsync task = new GetRhymeAsync();
+//                task.execute(REQUEST_URL);
+//            }
+//        });
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
