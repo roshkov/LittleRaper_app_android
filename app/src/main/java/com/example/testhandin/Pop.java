@@ -90,7 +90,7 @@ public class Pop extends AppCompatActivity {
 
 
 
-                Intent i = new Intent(Pop.this, PartSongActivity.class);
+                Intent i = new Intent(Pop.this, ThisSongActivity.class);
                           i.putExtra("clickedSongID", "song"+key);
                 startActivity(i);
                 finish();
