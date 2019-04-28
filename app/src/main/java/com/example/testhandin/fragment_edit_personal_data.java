@@ -116,35 +116,16 @@ public class fragment_edit_personal_data extends Fragment {
 
         mySwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-            //String themeName="";
-//                PackageInfo packageInfo;
-//                try
-//                {
-//                    packageInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), PackageManager.GET_META_DATA);
-//                    int themeResId = packageInfo.applicationInfo.theme;
-//                    themeName = getResources().getResourceEntryName(themeResId);
-//                }
-//                catch (PackageManager.NameNotFoundException e) { }
 
 
                 String colorStrRed = getResources().getString(R.color.AIESECRed); //hex of color
                 Log.i(TAG, colorStrRed);
-                String colorDef =  getResources().getString(R.color.colorPrimaryDark);
+                String colorDef =  getResources().getString(R.color.colorPrimary);
 
 
                 int color = ((ColorDrawable) activityReferenceVarMain.toolbar.getBackground()).getColor();  //color of toolbar in ColorInt
                 Log.i(TAG,Integer.toString(color));
 
-
-//                String defaultValue = String.valueOf(getResources().getColor(R.color.colorPrimary)); //default color if there s nothing at shared preferences
-//                Log.i(TAG, defaultValue);
-//                String colorT = sharedPreferences.getString("ToolbarTheme", defaultValue);  //retrive current color
-//                Log.i(TAG, colorT);
-//
-//                toolbar = findViewById(R.id.toolbar);
-//                setSupportActionBar(toolbar);
-//                progressBarMain = findViewById(R.id.slProgress);
-//                toolbar.setBackgroundColor(Integer.parseInt(colorT));
 
 
 
@@ -162,34 +143,8 @@ public class fragment_edit_personal_data extends Fragment {
                     editor.putInt("ToolbarTheme",Color.parseColor(colorStrRed) );
                     editor.commit();
 
-
                 }
 
-
-//                activityReferenceVarMain.toolbar.setBackgroundColor(Color.parseColor("#000000"));
-//                activityReferenceVarMain.toolbar.setBackgroundColor(color);
-
-
-//                    if(strColor.equals (ResourcesCompat.getColor(getResources(), R.color.AIESECBlue, null) ))
-//                    {
-//                        activityReferenceVarMain.toolbar.setBackgroundColor(Color.parseColor("#f85a40"));
-//                    }
-//                    else {activityReferenceVarMain.toolbar.setBackgroundColor(Color.parseColor("#037ef3"));}
-//                Log.i(TAG, String.valueOf(activityReferenceVarMain.toolbar.getSolidColor()));
-
-//                if ( themeName.equals("AppTheme")) {
-//                    getActivity().getApplication().setTheme(R.style.AIESECTheme);
-//                } else {
-//                    getActivity().getApplication().setTheme(R.style.AppTheme);
-//                }
-//                try
-//                {
-//                    packageInfo = getActivity().getPackageManager().getPackageInfo(getActivity().getPackageName(), PackageManager.GET_META_DATA);
-//                    int themeResId = packageInfo.applicationInfo.theme;
-//                    themeName = getResources().getResourceEntryName(themeResId);
-//                }
-//                catch (PackageManager.NameNotFoundException e) { }
-//                Log.i(TAG, themeName);
             }
         });
 

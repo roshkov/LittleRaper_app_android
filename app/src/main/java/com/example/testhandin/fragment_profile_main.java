@@ -29,7 +29,7 @@ public class fragment_profile_main extends Fragment {
         View view = inflater.inflate(R.layout.fragment_profile_main, container, false);
 
 
-        userSignOut = view.findViewById(R.id.btnSignOut);
+//        userSignOut = view.findViewById(R.id.btnSignOut);
         RotateAnimation rotateAnimation = new RotateAnimation(0, 360f,
                 Animation.RELATIVE_TO_SELF, 0.5f,
                 Animation.RELATIVE_TO_SELF, 0.5f);
